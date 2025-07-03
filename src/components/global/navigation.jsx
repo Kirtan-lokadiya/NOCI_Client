@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import Link from 'next/link';
 import {
     AppBar,
     Toolbar,
@@ -33,10 +34,9 @@ const Navbar = () => {
     };
 
     const navItems = [
-        {label: 'Features', href: '#features'},
-        {label: 'Testimonials', href: '#testimonials'},
-        {label: 'Highlights', href: '#highlights'},
-        {label: 'Pricing', href: '#pricing'},
+        {label: 'Home', href: '#Home'},
+        {label: 'Products', href: '#testimonials'},
+        {label: 'Ideas', href: '#highlights'},
         {label: 'FAQ', href: '#faq'},
         {label: 'Blog', href: '#blog'},
     ];
@@ -64,53 +64,55 @@ const Navbar = () => {
                         }}
                     >
                         {/* Logo Section */}
-                        <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
-                            <Box
-                                sx={{
-                                    width: 32,
-                                    height: 32,
-                                    backgroundColor: '#1976d2',
-                                    borderRadius: '6px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                }}
-                            >
+                        <Link href="/" style={{ textDecoration: 'none' }}>
+                            <Box sx={{display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer'}}>
                                 <Box
                                     sx={{
-                                        width: 16,
-                                        height: 16,
-                                        backgroundColor: 'white',
-                                        borderRadius: '50%',
+                                        width: 32,
+                                        height: 32,
+                                        backgroundColor: '#1976d2',
+                                        borderRadius: '6px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
                                         position: 'relative',
-                                        '&::after': {
-                                            content: '""',
-                                            position: 'absolute',
-                                            top: 2,
-                                            left: 2,
-                                            width: 12,
-                                            height: 12,
-                                            backgroundColor: '#1976d2',
-                                            borderRadius: '50%',
-                                        }
+                                        overflow: 'hidden',
                                     }}
-                                />
+                                >
+                                    <Box
+                                        sx={{
+                                            width: 16,
+                                            height: 16,
+                                            backgroundColor: 'white',
+                                            borderRadius: '50%',
+                                            position: 'relative',
+                                            '&::after': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                top: 2,
+                                                left: 2,
+                                                width: 12,
+                                                height: 12,
+                                                backgroundColor: '#1976d2',
+                                                borderRadius: '50%',
+                                            }
+                                        }}
+                                    />
+                                </Box>
+                                <Typography
+                                    variant="h6"
+                                    component="div"
+                                    sx={{
+                                        fontWeight: 600,
+                                        fontSize: '1.2rem',
+                                        color: 'white',
+                                        fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                                    }}
+                                >
+                                    Sitemark
+                                </Typography>
                             </Box>
-                            <Typography
-                                variant="h6"
-                                component="div"
-                                sx={{
-                                    fontWeight: 600,
-                                    fontSize: '1.2rem',
-                                    color: 'white',
-                                    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-                                }}
-                            >
-                                Sitemark
-                            </Typography>
-                        </Box>
+                        </Link>
 
                         {/* Desktop Navigation */}
                         {!isMobile && (
@@ -144,46 +146,50 @@ const Navbar = () => {
                         <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
                             {!isMobile && (
                                 <>
-                                    <Button
-                                        sx={{
-                                            color: 'rgba(255, 255, 255, 0.85)',
-                                            textTransform: 'none',
-                                            fontWeight: 500,
-                                            fontSize: '0.95rem',
-                                            px: 2,
-                                            py: 1,
-                                            borderRadius: '6px',
-                                            transition: 'all 0.2s ease',
-                                            '&:hover': {
-                                                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                                                color: 'white',
-                                            },
-                                        }}
-                                    >
-                                        Sign in
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        sx={{
-                                            backgroundColor: 'white',
-                                            color: '#0a1929',
-                                            textTransform: 'none',
-                                            fontWeight: 600,
-                                            fontSize: '0.95rem',
-                                            px: 2,
-                                            py: 1,
-                                            borderRadius: '8px',
-                                            boxShadow: 'none',
-                                            transition: 'all 0.2s ease',
-                                            '&:hover': {
-                                                backgroundColor: 'rgba(255, 255, 255, 0.92)',
-                                                boxShadow: '0 4px 12px rgba(255, 255, 255, 0.15)',
-                                                transform: 'translateY(-1px)',
-                                            },
-                                        }}
-                                    >
-                                        Sign up
-                                    </Button>
+                                    <Link href="/signin" style={{ textDecoration: 'none' }}>
+                                        <Button
+                                            sx={{
+                                                color: 'rgba(255, 255, 255, 0.85)',
+                                                textTransform: 'none',
+                                                fontWeight: 500,
+                                                fontSize: '0.95rem',
+                                                px: 2,
+                                                py: 1,
+                                                borderRadius: '6px',
+                                                transition: 'all 0.2s ease',
+                                                '&:hover': {
+                                                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                                    color: 'white',
+                                                },
+                                            }}
+                                        >
+                                            Sign in
+                                        </Button>
+                                    </Link>
+                                    <Link href="/signup" style={{ textDecoration: 'none' }}>
+                                        <Button
+                                            variant="contained"
+                                            sx={{
+                                                backgroundColor: 'white',
+                                                color: '#0a1929',
+                                                textTransform: 'none',
+                                                fontWeight: 600,
+                                                fontSize: '0.95rem',
+                                                px: 2,
+                                                py: 1,
+                                                borderRadius: '8px',
+                                                boxShadow: 'none',
+                                                transition: 'all 0.2s ease',
+                                                '&:hover': {
+                                                    backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                                                    boxShadow: '0 4px 12px rgba(255, 255, 255, 0.15)',
+                                                    transform: 'translateY(-1px)',
+                                                },
+                                            }}
+                                        >
+                                            Sign up
+                                        </Button>
+                                    </Link>
                                 </>
                             )}
                             {/* Mobile Menu Button */}
