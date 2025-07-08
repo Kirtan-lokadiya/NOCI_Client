@@ -25,7 +25,9 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  InputAdornment
+  InputAdornment,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import {
   Favorite,
@@ -110,6 +112,9 @@ const initialPosts = [
 ];
 
 export default function Home() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isDark = theme.palette.mode === 'dark';
   const [posts, setPosts] = useState(initialPosts);
   const [expandedComments, setExpandedComments] = useState({});
   const [newComment, setNewComment] = useState({});
@@ -189,8 +194,8 @@ export default function Home() {
   return (
     <Box sx={{ 
       minHeight: '100vh', 
-      backgroundColor: '#0a1929',
-      pt: 10,
+      backgroundColor: isDark ? '#0a1929' : '#f8f9fa',
+      pt: 12,
       pb: 4
     }}>
       <Container maxWidth="md">
@@ -200,18 +205,18 @@ export default function Home() {
             variant="h3" 
             component="h1" 
             sx={{ 
-              color: 'white', 
+              color: isDark ? 'white' : '#222', 
               fontWeight: 700, 
               mb: 2,
               textAlign: 'center'
             }}
           >
-            Social Feed
+            Connect Your Thoughts
           </Typography>
           <Typography 
             variant="h6" 
             sx={{ 
-              color: 'rgba(255, 255, 255, 0.7)', 
+              color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)', 
               textAlign: 'center',
               mb: 4
             }}
@@ -224,12 +229,12 @@ export default function Home() {
         <Paper sx={{ 
           mb: 3, 
           p: 2, 
-          backgroundColor: '#1e293b',
-          border: '1px solid rgba(255, 255, 255, 0.1)'
+          backgroundColor: isDark ? '#1e293b' : 'white',
+          border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #e0e0e0'
         }}>
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
             <TrendingUp sx={{ color: '#1976d2', mr: 1 }} />
-            <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
+            <Typography variant="h6" sx={{ color: isDark ? 'white' : '#222', fontWeight: 600 }}>
               Trending Topics
             </Typography>
           </Box>
@@ -258,8 +263,8 @@ export default function Home() {
             <Card 
               key={post.id}
               sx={{ 
-                backgroundColor: '#1e293b',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backgroundColor: isDark ? '#1e293b' : 'white',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #e0e0e0',
                 borderRadius: 2,
                 overflow: 'hidden'
               }}
@@ -273,19 +278,19 @@ export default function Home() {
                 action={
                   <IconButton 
                     onClick={(e) => handleMenuClick(e, post.id)}
-                    sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
+                    sx={{ color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)' }}
                   >
                     <MoreVert />
                   </IconButton>
                 }
                 title={
-                  <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
+                  <Typography variant="h6" sx={{ color: isDark ? 'white' : '#222', fontWeight: 600 }}>
                     {post.author.name}
                   </Typography>
                 }
                 subheader={
                   <Box>
-                    <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                    <Typography variant="body2" sx={{ color: isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)' }}>
                       {post.author.username} • {post.timestamp}
                     </Typography>
                   </Box>
@@ -294,7 +299,7 @@ export default function Home() {
               />
 
               <CardContent sx={{ pt: 0 }}>
-                <Typography variant="body1" sx={{ color: 'white', mb: 2, lineHeight: 1.6 }}>
+                <Typography variant="body1" sx={{ color: isDark ? 'white' : '#222', mb: 2, lineHeight: 1.6 }}>
                   {post.content}
                 </Typography>
                 
@@ -337,13 +342,13 @@ export default function Home() {
                   justifyContent: 'space-between', 
                   alignItems: 'center',
                   py: 1,
-                  borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                  borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #e0e0e0',
+                  borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #e0e0e0'
                 }}>
-                  <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                  <Typography variant="body2" sx={{ color: isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)' }}>
                     {post.likes} likes
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                  <Typography variant="body2" sx={{ color: isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)' }}>
                     {post.comments} comments • {post.shares} shares
                   </Typography>
                 </Box>
